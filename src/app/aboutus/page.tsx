@@ -99,6 +99,7 @@ function AboutUsPage() {
     style={{
       backgroundImage:
         'url("https://eatsy.bold-themes.com/burger/wp-content/uploads/sites/2/2021/02/background_06-scaled-1.jpg")',
+      
     }}
   >
     {/* Top SVG */}
@@ -128,6 +129,8 @@ function AboutUsPage() {
           <Image
             src="https://eatsy.bold-themes.com/burger/wp-content/uploads/sites/2/2021/02/inner_image_02.jpg"
             alt="Our Story"
+            width={100}
+            height={100}
             className="rounded-3xl w-full"
           />
         </div>
@@ -150,6 +153,8 @@ function AboutUsPage() {
           <Image
             src="https://res.cloudinary.com/dmlbubaom/image/upload/v1756063093/gomino_bags_t9blpj.png"
             alt="Delivery and Takeaways"
+            width={600}
+            height={600}
             className="rounded-3xl w-full"
           />
         </div>
