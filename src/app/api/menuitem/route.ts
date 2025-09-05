@@ -1,23 +1,21 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import {  MenuItemModel } from "@/model/MenuItems";
-import mongoose, { Schema } from "mongoose";
+import { UploadApiResponse, UploadApiErrorResponse } from "cloudinary";
+
 import connectDb from "@/lib/connectDb";
-import { success } from "zod";
+
 
 
 export async function POST(req: NextRequest) {
   connectDb();
 
-    const session = await getServerSession(authOptions) 
+    // const session = await getServerSession(authOptions) 
   try {
-    const data:any = await req.formData();
-    // const ingre = data.get("Ingredients")
-    // console.log("the ingree is fraud",ingre)
-    // console.log(data)
+   const data: FormData = await req.formData();
+
+ 
    
     // console.log("the form data is " ,data.get("name"));
     const file = data.get("file") as File;
@@ -31,13 +29,14 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(arrayBuffer);
 
     // Upload to Cloudinary
-    const result:any = await new Promise((resolve, reject) => {
+    const result:UploadApiResponse = await new Promise((resolve, reject) => {
       cloudinary.uploader
-        .upload_stream({ folder: "nextjs_uploads" }, (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
-        })
-        .end(buffer);
+        .upload_stream({ folder: "nextjs_uploads" },(error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
+      if (error) return reject(error);
+      if (!result) return reject(new Error("Upload failed, no result returned"));
+      resolve(result);
+    })
+    .end(buffer);
     });
 
     const imagedata = result?.url;

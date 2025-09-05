@@ -10,7 +10,38 @@ import { X , CheckCircle2 } from 'lucide-react';
 
 function Cart() {
   const { cartProducts, removeCartProduct ,setCartProducts,clearCart }: any = useContext(CartContext);
+ 
 console.log("Cart Products:", cartProducts);
+interface RazorpayResponse {
+  razorpay_payment_id: string;
+  razorpay_order_id: string;
+  razorpay_signature: string;
+}
+
+interface RazorpayOptions {
+  key: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  order_id: string;
+  handler: (response: RazorpayResponse) => void;
+  prefill: {
+    name: string;
+    email: string;
+    contact: string;
+  };
+  theme: {
+    color: string;
+  };
+}
+
+type CartProduct = {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+};
 
 
 
@@ -73,7 +104,7 @@ function decreaseQuantity(index: number) {
           })
     }
 
-    const options = {
+    const options:RazorpayOptions = {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY!,
       amount: total * 100,
       currency: "INR",

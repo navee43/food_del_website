@@ -6,7 +6,8 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import { UserModel } from "@/model/User";
 
 import connectDb from "@/lib/connectDb";
-import { error } from "console";
+
+import { UploadApiResponse, UploadApiErrorResponse } from "cloudinary";
 
 
 export async function POST(req: NextRequest) {
@@ -33,14 +34,15 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(arrayBuffer);
 
     // Upload to Cloudinary
-    const result:any = await new Promise((resolve, reject) => {
-      cloudinary.uploader
-        .upload_stream({ folder: "nextjs_uploads" }, (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
-        })
-        .end(buffer);
-    });
+ const result: UploadApiResponse = await new Promise<UploadApiResponse>((resolve, reject) => {
+  cloudinary.uploader
+    .upload_stream({ folder: "nextjs_uploads" }, (error: UploadApiErrorResponse | undefined, result: UploadApiResponse | undefined) => {
+      if (error) return reject(error);
+      if (!result) return reject(new Error("Upload failed, no result returned"));
+      resolve(result);
+    })
+    .end(buffer);
+});
     console.log("hello1" , result);
 
        if (!session) {  throw new Error("Not authenticated");}

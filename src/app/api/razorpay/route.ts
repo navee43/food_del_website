@@ -18,7 +18,10 @@ export async function POST(req: Request) {
 
     const order = await razorpay.orders.create(options);
     return NextResponse.json({ orderId: order.id });
-  } catch (error: any) {
+  } catch (error: unknown) {
+  if (error instanceof Error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
+  return NextResponse.json({ error: "An unknown error occurred" }, { status: 500 });
+}
 }

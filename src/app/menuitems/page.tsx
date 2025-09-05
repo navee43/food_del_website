@@ -5,7 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
  import { CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
-import Spinner from '@/components/layout/Spinner';
+
 
 
 
@@ -36,7 +36,7 @@ function  MenuPage() {
     }
   };
 
-const handleSubmit = async (e: any) => {
+const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
   setIsSaving(true);
 
   e.preventDefault(); 

@@ -2,8 +2,29 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import UserTabs from "@/components/layout/userTabs";
+
+
+
+  type OrderItem = {
+  id?: string;        // if you store item ID
+  name: string;
+  price: number;
+  quantity: number;
+  image?: string;
+};
+
+type Order = {
+  _id: string;
+  paymentId: string;
+  totalAmount: number;
+  items: OrderItem[];
+};
 export default function Orders() {
-  const [orders, setOrders] = useState([]);
+ const [orders, setOrders] = useState<Order[]>([]);
+
+
+
+
 
   useEffect(() => {
    const fetchOrders = async()=>{
@@ -33,7 +54,7 @@ return (
     )}
 
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {orders.map((order: any) => (
+      {orders.map((order) => (
         <div
           key={order._id}
           className="border rounded-2xl p-5 shadow-md bg-white hover:shadow-lg transition duration-300"
@@ -53,7 +74,7 @@ return (
 
           {/* Items */}
           <div className="space-y-4">
-            {order.items.map((item: any, idx: number) => (
+            {order.items.map((item: OrderItem, idx: number) => (
               <div
                 key={idx}
                 className="flex items-center justify-between border-b pb-3"

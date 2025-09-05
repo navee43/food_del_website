@@ -52,7 +52,7 @@ function footer() {
             <div className='text-white   flex justify-start md:justify-center flex-col md:flex-row md:items-center gap-5 md:gap-40 w-full pt-10 pl-10 pb-8 '>
 
              <div className='flex flex-col justify-center   '>
-              <p className='uppercase  text-red-500 font-semibold  pb-2'>Let's get together </p>
+              <p className='uppercase  text-red-500 font-semibold  pb-2'>Let&apos;s get together </p>
               <div className='gap-3 flex flex-col pb-2 '>
                 <p className='flex gap-3'>  <MapPin /> 60 East 65th Street, NY</p>
                 <p className='flex gap-3'>  <Clock10 />Mon - Sat: 11AM - 11PMSun: 11AM - 08PM</p>

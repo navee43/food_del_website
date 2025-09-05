@@ -2,7 +2,22 @@
 import React, { useState } from 'react'
 import { ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-function HardCodedItems({data}:any) {
+
+
+interface MenuItem {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+}
+
+interface HardCodedItemsProps {
+  data: MenuItem[];
+}
+
+
+
+function HardCodedItems({ data }: HardCodedItemsProps) {
     const [inData , setInData] = useState(data);
  const router = useRouter();
 
@@ -15,7 +30,7 @@ function HardCodedItems({data}:any) {
     <div className='flex justify-center gap-10 items-center mx-20  flex-wrap  md:w-[81rem]  w-[20rem] md:pt-25'>
 
             {inData && 
-            inData.map((item:any, index:any)=>(
+            inData.map((item, index)=>(
                 
                  <div key={index} className='  h-[500px] w-[500px] md:w-[350px] bg-white md:h-[600px] space-y-2  flex flex-col justify-between md:p-4 pt-3 md:pt-6 pb-6 rounded-4xl gap-1  hover:scale-102 transition-transform duration-1000'>
                                   <div className='' onClick={()=>(handleClick(inData[index].id))}>

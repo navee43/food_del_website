@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { toast } from "sonner"
-import { useDebounce, useDebouncedCallback } from 'use-debounce';
+import {  useDebouncedCallback } from 'use-debounce';
 import axios, { AxiosError } from 'axios';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -97,9 +97,9 @@ export default function SignUpForm() {
 
       const axiosError = error as AxiosError<ApiResponse>;
 
-      // Default error message
-      let errorMessage = axiosError.response?.data.message;
-      ('There was a problem with your sign-up. Please try again.');
+    
+      const errorMessage = axiosError.response?.data.message;
+    
 
   toast(
   <div>
@@ -141,7 +141,7 @@ export default function SignUpForm() {
                   <FormLabel className='font-bold text-white'>Username</FormLabel>
                   <Input
                     {...field}
-                    onChange={(e:any) => {
+                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
                       field.onChange(e);
                      debouncedUsername(e.target.value);
                     

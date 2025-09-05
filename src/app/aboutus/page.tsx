@@ -125,7 +125,7 @@ function AboutUsPage() {
       {/* First Content Block */}
       <div className="bg-white flex flex-col md:flex-row items-center gap-10 md:gap-20 rounded-3xl max-w-7xl w-full min-h-[70vh] md:min-h-screen p-6 sm:p-10">
         <div className="w-full md:w-1/2">
-          <img
+          <Image
             src="https://eatsy.bold-themes.com/burger/wp-content/uploads/sites/2/2021/02/inner_image_02.jpg"
             alt="Our Story"
             className="rounded-3xl w-full"
@@ -147,7 +147,7 @@ function AboutUsPage() {
       {/* Second Content Block */}
       <div className="bg-white flex flex-col md:flex-row items-center gap-10 md:gap-20 rounded-3xl max-w-7xl w-full min-h-[70vh] md:min-h-screen p-6 sm:p-10 mt-20">
         <div className="w-full md:w-1/2">
-          <img
+          <Image
             src="https://res.cloudinary.com/dmlbubaom/image/upload/v1756063093/gomino_bags_t9blpj.png"
             alt="Delivery and Takeaways"
             className="rounded-3xl w-full"

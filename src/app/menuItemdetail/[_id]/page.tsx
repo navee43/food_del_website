@@ -19,6 +19,17 @@ import { CheckCircle2 } from "lucide-react";
 
 export default function Page() {
 
+type MenuItem = {
+  _id?: string;
+  // id?:number;
+  name: string;
+  description?: string;
+  price: number;
+  image?: string;
+ 
+  Ingredients:string;
+  Description:string;
+};
 
   const {cartProducts}:any = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
@@ -27,7 +38,7 @@ export default function Page() {
   const params = useParams();
   const _id = params._id as string | undefined;
   console.log("the id is ", _id)
-  const [itemData, setItemData] = useState<any>(null);
+  const [itemData, setItemData] = useState<MenuItem>();
 
   useEffect(() => {
     if (!_id) return;

@@ -55,7 +55,7 @@ useEffect(() => {
 
 
 
-const handleImageSubmit = async (e: any) => {
+const handleImageSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
 // console.log("start sending ")
   const file = e.target.files;
   if (file?.length === 1) {
@@ -129,7 +129,7 @@ const handleImageSubmit = async (e: any) => {
 };
 
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("submission");
     setIsSaving(true)

@@ -19,7 +19,7 @@ import { signInSchema } from "@/Schema/signInSchema"
 import {toast }  from 'sonner'
 import googleimg from '../../../../public/images/google.png'
 import Image from 'next/image';
-import GoogleProvider from "next-auth/providers/google";
+
 import localFont from 'next/font/local'
 
   const myFont = localFont({

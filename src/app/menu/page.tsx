@@ -4,9 +4,9 @@ import localFont from 'next/font/local'
 import Image from 'next/image';
 import pizza from '../../../public/images/piz2.png'
 import slice from '../../../public/images/slice.png'
-// import carasoul from '@/components/slider/carasoul'
 
-import { CirclePlus } from 'lucide-react';
+
+
 import { ShoppingCart } from 'lucide-react';
 
 import {burgers, CarsoulStaticData, pizzas}  from '@/data/HardcodedData'
@@ -20,7 +20,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
+
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -41,7 +41,17 @@ const my3Font = localFont({
 
 function MenuPage() {
 
-  const [menuItemData , setMenuItemData] = useState<any[]>([]);
+  type MenuItem = {
+  _id: number;
+  ItemName: string;
+  description: string;
+  price: number;
+  image?: string; // optional
+  category?: string; // optional
+};
+
+
+  const [menuItemData , setMenuItemData] = useState<MenuItem[]>([]);
 const [mounted, setMounted] = useState(false);
  const router = useRouter();
 
@@ -541,7 +551,7 @@ if (!mounted) {
 
                 <span className="text-2xl font-semibold">
                   <Image
-                    src={item.image}
+                    src={item.image||""}
                     alt={item.ItemName}
                     width={300}
                     height={300}
@@ -588,7 +598,7 @@ if (!mounted) {
                   <Link href={`/menuItemdetail/${item._id}`}>
                        <Image 
 
-                                src={item.image}
+                                src={item.image|| ""}
                                 alt="Product"
                                   width={300}
                                   height={300}

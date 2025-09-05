@@ -4,8 +4,16 @@ import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
 import connectDb from "@/lib/connectDb";
 import { UserModel } from "../../../../model/User";
-import { User } from "lucide-react";
+
 import { Types } from "mongoose";
+
+
+
+type UserCredentials = {
+  identifier: string;
+  password: string;
+} | undefined;
+
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -20,24 +28,28 @@ export const authOptions: NextAuthOptions = {
         identifier: { label: "Email or Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any): Promise<any> {
+      async authorize(credentials: UserCredentials): Promise<any> {
+         if (!credentials) return null;
         await connectDb();
         try {
           const user = await UserModel.findOne({
             $or: [
               // { username: credentials.identifier },
-              { email: credentials.identifier },
+              { email: credentials?.identifier },
             ],
           });
           if (!user) throw new Error("No user found with this email");
           if (!user.isVerified) throw new Error("Please verify your account first");
 
-          const isPassCorrect = await bcrypt.compare(credentials.password, user.password);
+          const isPassCorrect = await bcrypt.compare(credentials?.password, user.password);
           if (!isPassCorrect) throw new Error("Incorrect password");
 
           return user;
-        } catch (error: any) {
-          throw new Error(error);
+        } catch (error: unknown) {
+           if (error instanceof Error) {
+    throw new Error(error.message);
+  }
+  throw new Error("An unknown error occurred");
         }
       },
     }),
