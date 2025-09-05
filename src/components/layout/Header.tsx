@@ -82,7 +82,7 @@ const status = session.status;
         <Link href="/menu" className="hover:text-red-600 text-black">Menu</Link>
         <Link href="/aboutus" className="hover:text-red-600 text-black">About</Link>
         <Link href="/contactus" className="hover:text-red-600 text-black">Contact</Link>
-        <Link href="/home" className="hover:text-red-600 text-black text-white
+        <Link href="/signin" className="hover:text-red-600 text-black text-white
          bg-red-600 p-1 rounded-md px-4">Login</Link>
          
       </nav>
