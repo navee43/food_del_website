@@ -140,13 +140,29 @@ function decreaseQuantity(index: number) {
             },
             className: "backdrop-blur-md", 
           })
-      const res =  await axios.post("/api/orders", {
-          paymentId: response.razorpay_payment_id,
-          items: cartProducts,
-          totalAmount: total,
-        });
+      // const res =  await axios.post("/api/orders", {
+      //     paymentId: ,
+      //     items: cartProducts,
+      //     totalAmount: ,
+      //   });
+        axios.post("/api/orders", {
+  paymentId: response.razorpay_payment_id,
+  items: cartProducts.map((p) => ({
+    id: p.id || "",  
+    name: p.name,    
+    price: Number(p.price),
+    image: p.image,
+    quantity: p.quantity,
+  })),
+  totalAmount:total,
+});
 
-        // 4️⃣ Clear cart after success
+       
+      
+
+       
+
+        
         clearCart();  
       },
       prefill: {
@@ -193,7 +209,7 @@ function decreaseQuantity(index: number) {
 
     {/* Cart Items */}
     {cartProducts?.length > 0 &&
-      cartProducts.map((product: any, index: number) => (
+      cartProducts.map((product, index: number) => (
         <div
           key={index}
           className="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-gray-200 px-4 sm:px-6 lg:px-10 py-4 sm:py-5 gap-4 md:gap-0"
@@ -254,7 +270,7 @@ function decreaseQuantity(index: number) {
       Total: ₹
       {cartProducts
         .reduce(
-          (sum: number, p: any) => sum + Number(p.price) * Number(p.quantity),
+          (sum: number, p) => sum + Number(p.price) * Number(p.quantity),
           0
         )
         .toFixed(2)}

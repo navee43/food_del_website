@@ -7,7 +7,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/options"; // your next
 export async function POST(req: Request) {
   await dbConnect();
   const body = await req.json();
-//   console.log("the body is " , body)
+  console.log("the body is " , body)
 
   
   const session = await getServerSession(authOptions);

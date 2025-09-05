@@ -25,7 +25,7 @@ declare module "next-auth" {
   }
 }
 
-interface RazorpayInstance {
-  open: () => void;
-  on: (event: string, handler: (response: any) => void) => void;
-}
+// interface RazorpayInstance {
+//   open: () => void;
+//   on: (event: string, handler: (response: any) => void) => void;
+// }
