@@ -45,7 +45,7 @@ function Hero() {
 
   
     return (
-    <div className="w-full  ">
+    <div className="w-full overflow-hidden ">
       <div className=" text-center bg-red-500 md:pb-[25rem] pb-[10rem]"> 
           <h1 className={` text-[4rem] md:text-[13rem] tracking-wide font-bold text-yellow-300 ${myFont.className}`}>Delicious </h1>
           <h1 className={` text-[4rem]  md:text-[13rem] tracking-wide font-bold text-yellow-300 ${myFont.className}`}> Burgers</h1>
