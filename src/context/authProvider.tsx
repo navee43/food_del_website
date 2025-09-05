@@ -12,19 +12,20 @@ export type CartProduct = {
   quantity: number; // Always managed in cart
 };
 
-// ✅ Context Type
+
 export type CartContextType = {
   cartProducts: CartProduct[];
-  addToCart: (product: Omit<CartProduct, "quantity">) => void; // caller doesn't pass quantity
+  addToCart: (product: Omit<CartProduct, "quantity">) => void; 
   setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>;
   removeCartProduct: (indexToRemove: number) => void;
   clearCart: () => void;
 };
 
-// ✅ Context
-export const CartContext = createContext<CartContextType | null>(null);
 
-// ✅ Provider
+export const CartContext = createContext<CartContextType | undefined>(undefined);
+
+
+
 export default function AuthProvider({ children }: { children: ReactNode }) {
   const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
 
@@ -51,7 +52,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     saveCartProductsToLocalStorage([]);
   }
 
-  // Remove cart product by index
+
   function removeCartProduct(indexToRemove: number) {
     setCartProducts((prevCartProducts) => {
       const newCartProducts = prevCartProducts.filter(
@@ -63,38 +64,25 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   // Add product to cart
-  function addToCart(product: Omit<CartProduct, "quantity">) {
-    setCartProducts((prevProducts) => {
-      const numericPrice = Number(
-        String(product.price).replace(/[^0-9.]/g, "")
-      );
+function addToCart(product: Omit<CartProduct, "quantity">) {
+  setCartProducts((prevProducts) => {
+    const existingProductIndex = prevProducts.findIndex((p) => p.id === product.id);
 
-      const existingProductIndex = prevProducts.findIndex(
-        (p) => p.id === product.id
-      );
+    let updatedCart: CartProduct[];
 
-      let updatedCart: CartProduct[];
+    if (existingProductIndex !== -1) {
+      updatedCart = [...prevProducts];
+      updatedCart[existingProductIndex].quantity += 1;
+    } else {
+      updatedCart = [...prevProducts, { ...product, quantity: 1 }]; // ✅ quantity added here
+    }
 
-      if (existingProductIndex !== -1) {
-        // ✅ Already in cart → increase quantity
-        updatedCart = [...prevProducts];
-        updatedCart[existingProductIndex].quantity += 1;
-      } else {
-        // ✅ New product → add with quantity 1
-        updatedCart = [
-          ...prevProducts,
-          {
-            ...product,
-            price: numericPrice,
-            quantity: 1,
-          },
-        ];
-      }
+    saveCartProductsToLocalStorage(updatedCart);
+    return updatedCart;
+  });
+}
 
-      saveCartProductsToLocalStorage(updatedCart);
-      return updatedCart;
-    });
-  }
+
 
   return (
     <SessionProvider>

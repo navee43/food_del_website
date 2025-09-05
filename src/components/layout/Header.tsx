@@ -25,7 +25,13 @@ const myFont = localFont({
 
 
 function Header() {
-  const {cartProducts}:any = useContext(CartContext)
+   const context = useContext(CartContext);
+
+  if (!context) {
+    throw new Error("CartPage must be used within CartProvider");
+  }
+
+  const { cartProducts } = context;
 
 
 

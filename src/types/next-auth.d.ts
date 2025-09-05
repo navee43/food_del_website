@@ -1,4 +1,9 @@
 import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
+declare global {
+  interface Window {
+    Razorpay: new (options: RazorpayOptions) => RazorpayInstance;
+  }
+}
 
 declare module "next-auth" {
   interface User extends DefaultUser {
@@ -18,4 +23,9 @@ declare module "next-auth" {
     isVerified: boolean;
     image?: string;
   }
+}
+
+interface RazorpayInstance {
+  open: () => void;
+  on: (event: string, handler: (response: any) => void) => void;
 }

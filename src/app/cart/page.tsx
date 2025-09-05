@@ -9,7 +9,11 @@ import { toast } from "sonner";
 import { X , CheckCircle2 } from 'lucide-react';
 
 function Cart() {
-  const { cartProducts, removeCartProduct ,setCartProducts,clearCart }: any = useContext(CartContext);
+   const context = useContext(CartContext);
+    if (!context) {
+    throw new Error("CartPage must be used within CartProvider");
+  }
+    const { cartProducts, removeCartProduct, setCartProducts, clearCart } = context;
  
 console.log("Cart Products:", cartProducts);
 interface RazorpayResponse {
@@ -46,7 +50,7 @@ type CartProduct = {
 
 
 function increaseQuantity(index: number) {
-  setCartProducts((prev: any[]) => {
+  setCartProducts((prev) => {
     const updated = [...prev];
     updated[index].quantity += 1;
 
@@ -55,7 +59,7 @@ function increaseQuantity(index: number) {
 }
 
 function decreaseQuantity(index: number) {
-  setCartProducts((prev: any[]) => {
+  setCartProducts((prev) => {
     const updated = [...prev];
     if (updated[index].quantity > 1) {
       updated[index].quantity -= 1;
@@ -69,7 +73,7 @@ function decreaseQuantity(index: number) {
 
 
   const total = cartProducts.reduce(
-    (sum: number, p: any) => sum + p.price * p.quantity,
+    (sum, p) => sum + p.price * p.quantity,
     0
   );
 
@@ -111,7 +115,8 @@ function decreaseQuantity(index: number) {
       name: "Food Ordering Website",
       description: "Order Payment",
       order_id: data.orderId,
-     handler: async (response: any) => {
+     handler: async (response: RazorpayResponse
+     ) => {
        
          toast("✅ Payment successful!", {
             description: "Payment ID:"+response.razorpay_payment_id,
@@ -142,7 +147,7 @@ function decreaseQuantity(index: number) {
         });
 
         // 4️⃣ Clear cart after success
-        clearCart([]);  
+        clearCart();  
       },
       prefill: {
         name: "Your Customer",
@@ -157,7 +162,7 @@ function decreaseQuantity(index: number) {
       
     };
 
-    const rzp = new (window as any).Razorpay(options);
+    const rzp = new (window).Razorpay(options);
     rzp.open();
   };
 

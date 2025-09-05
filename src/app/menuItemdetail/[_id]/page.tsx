@@ -31,9 +31,15 @@ type MenuItem = {
   Description:string;
 };
 
-  const {cartProducts}:any = useContext(CartContext);
+  const context = useContext(CartContext);
+
+  if (!context) {
+    throw new Error("CartPage must be used within CartProvider");
+  }
+
+  const { cartProducts,addToCart } = context;
   const [quantity, setQuantity] = useState(1);
-  const {addToCart}:any = useContext(CartContext)
+ 
   console.log("the length is ",cartProducts?.length)
   const params = useParams();
   const _id = params._id as string | undefined;
@@ -111,7 +117,13 @@ type MenuItem = {
   className="bg-white border-2 border-gray-300 w-24 p-2 rounded-2xl text-center"
 />
           <button
-            onClick={() => {addToCart({ ...itemData, quantity }),  toast("✅ added", {
+            onClick={() => {
+               if (!itemData) return;
+              
+              addToCart({id: itemData._id||"",
+      name: itemData.name,
+      price: itemData.price,
+      image: itemData.image, }),  toast("✅ added", {
             description: "item added to cart ",
             icon: <CheckCircle2 className="text-white" />,
             style: {
@@ -149,7 +161,7 @@ type MenuItem = {
 
       {cartProducts && cartProducts.length > 0 ? (
         <div className="flex flex-col space-y-4">
-          {cartProducts.map((item: any, index: number) => (
+          {cartProducts.map((item, index) => (
             <div
               key={index}
               className="flex flex-row space-x-4 items-center text-left w-full"
@@ -160,7 +172,7 @@ type MenuItem = {
                 className="border-2 border-gray-300 rounded-2xl w-20 h-20 object-cover"
                 
               /></Link>
-              : <Link href={`/menuItemdetail/${item._id}`}> <img
+              : <Link href={`/menuItemdetail/${item.id}`}> <img
                 src={item.image}
                 alt={item.name}
                 className="border-2 border-gray-300 rounded-2xl w-20 h-20 object-cover"
