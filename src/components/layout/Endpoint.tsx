@@ -15,7 +15,7 @@ function footer() {
   return (
    
 
-        <div className="w-full object-cover bg-center bg-no-repeat bg-cover"
+        <div className="w-full object-cover bg-center bg-no-repeat bg-cover overflow-x-hidden"
     
     style={{ backgroundImage: "url('https://images.unsplash.com/photo-1637771622300-6f968a373415?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
     >
@@ -31,16 +31,16 @@ function footer() {
                </div>
           
 
-             <div className=' flex flex-col items-center gap-7 md:gap-10  pt-12  '>
+             <div className=' flex flex-col items-center space-y-7  md:gap-10  pt-12  '>
               <Image src={logo} alt="" className="w-30 h-30 " />
               {/* <img  className="w-19 h-19 " src="https://eatsy.bold-themes.com/burger/wp-content/uploads/sites/2/2021/02/footer_logo.png" alt="" /> */}
-              <h1 className={`${Font.className} text-white text-3xl md:text-5xl `}>Stay informed about special offers</h1>
+              <h1 className={`${Font.className} text-white text-center text-3xl md:text-5xl `}>Stay informed about special offers</h1>
               <h3 className={`${Font.className} text-white text-xl md:text-2xl`}>Subscribe to the newsleter</h3>
              <div className="relative  md:w-lg  ">
                   <input 
                          type="email" 
                           placeholder="enter your email" 
-                           className="text-gray-900 bg-white p-5  md:w-full rounded-4xl pr-[11rem]" />
+                           className="text-gray-900 bg-white p-5  md:w-full rounded-4xl pr-[8rem]  " />
                       <button className="absolute top-0 right-0 bg-red-500 text-black h-full w-[7rem] md:w-[10rem] rounded-4xl cursor-pointer">
                         Subscribe
                       </button>
