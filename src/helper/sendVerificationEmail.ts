@@ -14,6 +14,8 @@ export async function sendVerificationEmail(email:string,
     subject: 'Gomino | verification Code',
     react: VerificationEmail({ username, otp:verifyCode }),
   });
+  console.log("email , ", email)
+  console.log("username" , username, verifyCode)
 
         return {success:true , message:'email sent successfully '}
 
