@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import UserTabs from "@/components/layout/userTabs";
-
+import { useProfile } from "@/components/userProfile";
 
 
   type OrderItem = {
@@ -22,7 +22,7 @@ type Order = {
 export default function Orders() {
  const [orders, setOrders] = useState<Order[]>([]);
 
-
+const { data, error } = useProfile();
 
 
 
@@ -45,7 +45,7 @@ export default function Orders() {
 return (
   <div className="p-6 md:p-10 min-h-screen bg-gray-50">
    <div className="flex flex-col items-center justify-center">
-     <div className="w-[400px]"><UserTabs admin={true} /></div>
+     <div className="w-[400px]"><UserTabs admin={data?.data.userInfo.admin} /></div>
    </div>
     <h1 className="text-3xl font-bold mb-8 text-center md:text-left">Orders</h1>
 

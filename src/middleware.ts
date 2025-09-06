@@ -6,15 +6,17 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request, secret: process.env.NEXT_AUTH_SECRET });
   const url = request.nextUrl;
 
-  console.log("cookies:", request.cookies.getAll());
-  console.log("token: is this   ", token);
+  // console.log("cookies:", request.cookies.getAll());
+  // console.log("token: is this   ", token);
 
   // If logged in, block auth pages
   if (
     token &&
-    (url.pathname.startsWith("/signin") ||
-     url.pathname.startsWith("/signup") ||
-     url.pathname.startsWith("/verify"))
+    (
+      url.pathname.startsWith("/signin") ||
+      url.pathname.startsWith("/signup") ||
+      url.pathname.startsWith("/verify")
+    )
   ) {
     return NextResponse.redirect(new URL("/", request.url));
   }
@@ -24,10 +26,10 @@ export async function middleware(request: NextRequest) {
   if (
     !token &&
     (
-      url.pathname.startsWith("/profile") ||
-     url.pathname.startsWith("/orders") ||
-     url.pathname.startsWith("/cart") ||
-     url.pathname.startsWith("/menuitems")
+     url.pathname.startsWith("/profile") ||
+     url.pathname.startsWith("/orders")  ||
+     url.pathname.startsWith("/cart")    ||
+     url.pathname.startsWith("/menuitems")  
     )
   ) {
     return NextResponse.redirect(new URL("/signin", request.url));

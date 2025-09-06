@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import UserTabs from "@/components/layout/userTabs";
+import { useProfile } from "@/components/userProfile";
 
 type User = {
   id: number;
@@ -10,8 +11,11 @@ type User = {
 };
 
 export default function UsersList() {
+    const { data, error } = useProfile();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  // console.log("admin",data?.data.userInfo?.admin)
+  const [admin , setIsAdmin] = useState(data?.data.userInfo.admin)
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -33,9 +37,11 @@ export default function UsersList() {
     return <p className="text-center mt-10">Loading users...</p>;
   }
 
+  
+
   return (
     <div className="p-5 bg-gray-100 ">
-       <UserTabs admin={true}/>
+       <UserTabs admin={admin}/>
      
       <h1 className="text-2xl font-bold mb-6 text-center pt-10">Users</h1>
 

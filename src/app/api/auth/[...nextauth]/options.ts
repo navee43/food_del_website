@@ -88,6 +88,7 @@ export const authOptions: NextAuthOptions = {
           token.username = dbUser.username;
           token.isVerified = dbUser.isVerified;
           token.image = dbUser.image;
+         
         }
       }
       return token;
@@ -99,6 +100,7 @@ export const authOptions: NextAuthOptions = {
         session.user.username = token.username as string;
         session.user.isVerified = token.isVerified as boolean;
         session.user.image = token.image as string | undefined;
+
       }
       return session;
     },

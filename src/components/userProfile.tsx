@@ -11,6 +11,7 @@ type UserInfo = {
   city: string;
   postal: string;
   image?: string;
+  admin?: boolean;
 };
 
 type ProfileResponse = {

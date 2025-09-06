@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
 import check from '../../../public/images/check.png'
 import Image from 'next/image';
-import noimage from '../../../public/images/no_image.png'
+
 import UserTabs from '@/components/layout/userTabs';
 import { useProfile } from '@/components/userProfile';
 import {toast} from 'sonner'
@@ -185,7 +185,7 @@ const handleImageSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
    "
   //  style={{backgroundImage:'url("https://images.unsplash.com/photo-1609446605707-fb3732c2dbdc?q=80&w=1676&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}}
    >
-    <UserTabs admin={true} />
+    <UserTabs admin={data?.data.userInfo.admin} />
   <div className="bg-white w-full max-w-6xl rounded-3xl shadow-md flex flex-col lg:flex-row items-center lg:items-start justify-between p-6 md:p-12 gap-8">
 
 

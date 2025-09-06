@@ -5,6 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
  import { CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
+import { useSession } from 'next-auth/react';
 
 
 
@@ -21,7 +22,11 @@ function  MenuPage() {
   const[preview , setPreview] = useState("");
   const [Ingredients , setIngredients] =useState("");
   const [isSaving , setIsSaving]  =useState(false)
- 
+
+  const session = useSession();
+// const status = session.status;
+
+        console.log("session" , session?.data?.user)
  
 
 
