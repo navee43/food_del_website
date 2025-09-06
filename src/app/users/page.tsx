@@ -15,7 +15,15 @@ export default function UsersList() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   // console.log("admin",data?.data.userInfo?.admin)
-  const [admin , setIsAdmin] = useState(data?.data.userInfo.admin)
+  const [isAdmin , setIsAdmin] = useState(false)
+
+
+useEffect(() => {
+  if (data?.data?.userInfo) {
+   
+     setIsAdmin(data?.data.userInfo.admin || false)
+  }
+}, [data]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -41,7 +49,7 @@ export default function UsersList() {
 
   return (
     <div className="p-5 bg-gray-100 ">
-       <UserTabs admin={admin || false}/>
+       <UserTabs admin={isAdmin}/>
      
       <h1 className="text-2xl font-bold mb-6 text-center pt-10">Users</h1>
 

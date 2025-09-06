@@ -23,7 +23,15 @@ export default function Orders() {
  const [orders, setOrders] = useState<Order[]>([]);
 
 const { data, error } = useProfile();
+const [isAdmin , setIsAdmin] = useState(false)
 
+
+useEffect(() => {
+  if (data?.data?.userInfo) {
+   
+     setIsAdmin(data?.data.userInfo.admin || false)
+  }
+}, [data]);
 
 
   useEffect(() => {
@@ -45,7 +53,7 @@ const { data, error } = useProfile();
 return (
   <div className="p-6 md:p-10 min-h-screen bg-gray-50">
    <div className="flex flex-col items-center justify-center">
-     <div className="w-[400px]"><UserTabs admin={data?.data.userInfo.admin || false} /></div>
+     <div className="w-[400px]"><UserTabs admin={isAdmin} /></div>
    </div>
     <h1 className="text-3xl font-bold mb-8 text-center md:text-left">Orders</h1>
 

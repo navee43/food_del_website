@@ -41,9 +41,16 @@ useEffect(() => {
     setPostal(data.data.userInfo.postal || "");
     setEmail(session?.user.email || ""); 
      setUrl(data.data.userInfo.image || session?.user.image || ""); 
+     setIsAdmin(data?.data.userInfo.admin || false)
   }
 }, [data]);
 
+useEffect(() => {
+  if (data?.data?.userInfo) {
+   
+     setIsAdmin(data?.data.userInfo.admin || false)
+  }
+}, [data]);
 
 
  
@@ -185,7 +192,7 @@ const handleImageSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
    "
   //  style={{backgroundImage:'url("https://images.unsplash.com/photo-1609446605707-fb3732c2dbdc?q=80&w=1676&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'}}
    >
-    <UserTabs admin={data?.data.userInfo.admin || false} />
+    <UserTabs admin={isAdmin} />
   <div className="bg-white w-full max-w-6xl rounded-3xl shadow-md flex flex-col lg:flex-row items-center lg:items-start justify-between p-6 md:p-12 gap-8">
 
 
