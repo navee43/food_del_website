@@ -6,6 +6,7 @@ import axios from 'axios';
  import { CheckCircle2 } from "lucide-react"
 import { toast } from "sonner"
 import { useSession } from 'next-auth/react';
+import { useProfile } from '@/components/userProfile';
 
 
 
@@ -25,6 +26,7 @@ function  MenuPage() {
 
   const session = useSession();
 // const status = session.status;
+const {data } = useProfile();
 
         console.log("session" , session?.data?.user)
  
@@ -142,7 +144,7 @@ const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
 
    return (
     <div className="bg-gray-100 w-full min-h-screen flex flex-col items-center py-10 space-y-10">
-  <UserTabs admin={true}  />
+  <UserTabs admin={data?.data.userInfo.admin || false}  />
 
   <form
     onSubmit={handleSubmit}

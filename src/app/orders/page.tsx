@@ -45,7 +45,7 @@ const { data, error } = useProfile();
 return (
   <div className="p-6 md:p-10 min-h-screen bg-gray-50">
    <div className="flex flex-col items-center justify-center">
-     <div className="w-[400px]"><UserTabs admin={data?.data.userInfo.admin} /></div>
+     <div className="w-[400px]"><UserTabs admin={data?.data.userInfo.admin || false} /></div>
    </div>
     <h1 className="text-3xl font-bold mb-8 text-center md:text-left">Orders</h1>
 

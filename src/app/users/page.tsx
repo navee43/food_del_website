@@ -41,7 +41,7 @@ export default function UsersList() {
 
   return (
     <div className="p-5 bg-gray-100 ">
-       <UserTabs admin={admin}/>
+       <UserTabs admin={admin || false}/>
      
       <h1 className="text-2xl font-bold mb-6 text-center pt-10">Users</h1>
 
