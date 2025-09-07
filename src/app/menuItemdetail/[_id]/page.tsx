@@ -21,7 +21,7 @@ export default function Page() {
 
 type MenuItem = {
   _id?: string;
-  // id?:number;
+  id?:string | number;
   name: string;
   description?: string;
   price: number;
@@ -54,7 +54,7 @@ type MenuItem = {
       const staticItem = CarsoulStaticData.find(i => i.id.toString() === _id ) ||
         pizzas.find((i) => i.id.toString() === _id) ||
         burgers.find((i) => i.id.toString() === _id);
-      setItemData(staticItem);
+    setItemData(staticItem);
       // console.log(staticItem)
       return;
     }
@@ -120,7 +120,7 @@ type MenuItem = {
             onClick={() => {
                if (!itemData) return;
               
-              addToCart({id: itemData._id||"",
+              addToCart({ id: itemData.id || "",
       name: itemData.name,
       price: itemData.price,
       image: itemData.image, }),  toast("✅ added", {

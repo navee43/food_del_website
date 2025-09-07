@@ -63,10 +63,14 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     });
   }
 
-  // Add product to cart
 function addToCart(product: Omit<CartProduct, "quantity">) {
+  console.log("Adding product:", product);
+
   setCartProducts((prevProducts) => {
+    console.log("Prev products:", prevProducts);
+
     const existingProductIndex = prevProducts.findIndex((p) => p.id === product.id);
+    console.log("Found index:", existingProductIndex);
 
     let updatedCart: CartProduct[];
 
@@ -74,13 +78,16 @@ function addToCart(product: Omit<CartProduct, "quantity">) {
       updatedCart = [...prevProducts];
       updatedCart[existingProductIndex].quantity += 1;
     } else {
-      updatedCart = [...prevProducts, { ...product, quantity: 1 }]; // ✅ quantity added here
+      updatedCart = [...prevProducts, { ...product, quantity: 1 }];
     }
+
+    console.log("Updated cart:", updatedCart);
 
     saveCartProductsToLocalStorage(updatedCart);
     return updatedCart;
   });
 }
+
 
 
 
