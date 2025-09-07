@@ -157,3 +157,38 @@ export const pizzas = [
   }
 ];
 
+
+export const frontPageMenu = [
+  {
+    id: 7,
+    name: "Classic Cheeseburger",
+    Description: "A timeless cheeseburger with a juicy beef patty, cheddar cheese, and fresh veggies.",
+    Ingredients: "Beef patty, cheddar cheese, lettuce, tomato, onion, pickles, sesame bun",
+    image: "https://eatsy.bold-themes.com/burger/wp-content/uploads/sites/2/2018/09/product_01-640x640.avif",
+    price: 199
+  },
+  {
+    id: 8,
+    name: "BBQ Bacon Burger",
+    Description: "Smoky BBQ sauce, crispy bacon, and melted cheese over a tender beef patty.",
+    Ingredients: "Beef patty, bacon, BBQ sauce, cheddar cheese, onion rings, brioche bun",
+    image: "https://eatsy.bold-themes.com/burger/wp-content/uploads/sites/2/2018/09/product_02-640x640.avif",
+    price: 249
+  },
+  {
+    id: 9,
+    name: "Mushroom Swiss Burger",
+    Description: "Loaded with sautéed mushrooms and creamy Swiss cheese.",
+    Ingredients: "Beef patty, Swiss cheese, mushrooms, garlic butter, lettuce, artisan bun",
+    image: "https://eatsy.bold-themes.com/burger/wp-content/uploads/sites/2/2018/09/product_08.jpg",
+    price: 229
+  },
+  {
+    id: 10,
+    name: "Spicy Jalapeño Burger",
+    Description: "A fiery burger with jalapeños, spicy sauce, and pepper jack cheese.",
+    Ingredients: "Beef patty, jalapeños, pepper jack cheese, spicy mayo, lettuce, tomato, toasted bun",
+    image: "http://res.cloudinary.com/dmlbubaom/image/upload/v1755504842/nextjs_uploads/hym3n055yie1oqqiqgk5.jpg",
+    price: 239
+  },
+]

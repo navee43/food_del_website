@@ -216,8 +216,8 @@ if (!mounted) {
 
  <div className='my-20 md:my-30 flex flex-col justify-center items-center w-full'>
           <h1 className={` text-[4rem] md:text-[6rem]  text-center tracking-wide font-bold text-yellow-300 ${my2Font.className}`}>Bestsellers</h1>
-          <div className='flex justify-center gap-10 items-center mx-20  flex-wrap  md:w-[81rem] w-[18rem]'>
-
+          <div className='flex flex-row  md:w-[81rem] w-[18rem]'>
+ <HardCodedItems data={pizzas}/>
 
            {/* <div className='   w-full h-[500px] md:w-[350px] bg-white md:h-[600px]   flex flex-col justify-between md:p-4 pt-3 md:pt-6 pb-6 rounded-[40px] gap-1  hover:scale-102 transition-transform duration-1000'>
             <div className=''>
@@ -282,7 +282,7 @@ if (!mounted) {
             </div>
            </div> */}
 
-           <HardCodedItems data={pizzas}/>
+          
 
           
     </div>

@@ -27,7 +27,7 @@ function HardCodedItems({ data }: HardCodedItemsProps) {
   };
 
   return (
-    <div className='flex justify-center gap-10 items-center mx-20  flex-wrap  md:w-[81rem]  w-[20rem] md:pt-25'>
+    <div className=' mx-20 flex flex-wrap justify-center items-center gap-10  md:w-[81rem]  w-[20rem] md:pt-25'>
 
             {inData && 
             inData.map((item, index)=>(
@@ -40,7 +40,7 @@ function HardCodedItems({ data }: HardCodedItemsProps) {
 
                                   
                                   <div className=' flex justify-center '>
-                                    <img  className=" w-[450px] h-[350px] md:h-[400px] md:w-[350px] p-4" 
+                                    <img  className=" w-[450px] h-[350px] md:h-[400px] md:w-[350px] p-4 rounded-3xl" 
                                     src={inData[index].image} alt=''
 
                                     onClick={()=>(handleClick(inData[index].id))}

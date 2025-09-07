@@ -24,6 +24,8 @@ import rew1 from '../../../public/images/rew1.jpg'
 import rew2 from '../../../public/images/rew2.jpg'
 import rew3 from '../../../public/images/rew3.jpg'
 import rew4 from '../../../public/images/rew4.jpg'
+import HardCodedItems from './HardCodedItems';
+import { frontPageMenu } from '@/data/HardcodedData';
 
 
 
@@ -105,10 +107,33 @@ function Hero() {
 
       <div className='pb-45 flex flex-col justify-center items-center'>
           <h1 className={` text-[3rem] md:text-[6rem]  text-center tracking-wide font-bold text-yellow-300 ${my2Font.className}`}>Bestsellers</h1>
-          <div className='flex justify-center gap-10 items-center mx-20  flex-wrap  md:w-[81rem] w-[18rem]'>
+          <div className='flex justify-center gap-10 items-center mx-20  flex-col  md:w-[81rem] w-[18rem]'>
+
+<div className='relative hover:scale-102 transition-transform duration-1000 w-full'  >
+            <img className='md:w-full md:h-[600px] rounded-4xl w-full h-[300px]  '
+             src="https://res.cloudinary.com/dmlbubaom/image/upload/v1757224238/delicious-burger-city_mgktdz.jpg" alt="" />
+            <div className='absolute  inset-0 flex pt-20 justify-center'>
+                <p className={`text-white text-4xl md:text-7xl font-bold ${my2Font.className} `}>Halloween special offer</p>
+              </div>
+
+            <div className='absolute bottom-0  md:p-5 flex  items-center px-10 md:px-20 w-full justify-between p-3' >
+              
+              {/* <div  className=''>
+                <p className='text-white text-sm  md:text-2xl font-bold'>$11.00</p>
+                <p className='text-white  text-sm md:text-md font-bold'>220gm/600 cal</p>
+
+              </div> */}
+
+                 {/* <div>
+                    <ShoppingCart className='text-red-500 w-8 h-8 '/>
+                 </div> */}
+            </div>
+           </div>
 
 
-           <div className='   w-full h-[500px] md:w-[350px] bg-white md:h-[600px]   flex flex-col justify-between md:p-4 pt-3 md:pt-6 pb-6 rounded-[40px] gap-1  hover:scale-102 transition-transform duration-1000'>
+
+           <HardCodedItems data={frontPageMenu}/>
+           {/* <div className='   w-full h-[500px] md:w-[350px] bg-white md:h-[600px]   flex flex-col justify-between md:p-4 pt-3 md:pt-6 pb-6 rounded-[40px] gap-1  hover:scale-102 transition-transform duration-1000'>
             <div className=''>
             <h4 className='text-sm md:text-md font-semibold px-5 '>PORK</h4>
             <h1 className='md:text-4xl text-2xl font-bold px-5 tracking-wide'>Bacon+Cheese +Green Burger</h1>
@@ -124,7 +149,7 @@ function Hero() {
                 <p>220gm/600cal</p>
               </div>
               <ShoppingCart className='text-red-500 w-11 h-11 '/>
-                  {/* <CirclePlus  /> */}
+                  
             </div>
            </div>
 
@@ -144,7 +169,7 @@ function Hero() {
                 <p>220gm/600cal</p>
               </div>
               <ShoppingCart className='text-red-500 w-11 h-11 '/>
-                  {/* <CirclePlus  /> */}
+              
             </div>
            </div>
 
@@ -164,31 +189,13 @@ function Hero() {
                 <p>220gm/600cal</p>
               </div>
               <ShoppingCart className='text-red-500 w-11 h-11 '/>
-                  {/* <CirclePlus  /> */}
+                
             </div>
-           </div>
+           </div> */}
+      
+          
 
-           <div className='relative hover:scale-102 transition-transform duration-1000'  >
-            <img className='md:w-[740px] md:h-[600px] rounded-4xl w-full h-[300px]  ' src="https://plus.unsplash.com/premium_photo-1666830497544-5f5b306ef0b5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aGFsbG93ZWVuJTIwYnVyZ2VyfGVufDB8fDB8fHww" alt="" />
-            <div className='absolute  inset-0 flex pt-20 justify-center'>
-                <p className={`text-white text-4xl md:text-7xl font-bold ${my2Font.className} `}>Halloween special offer</p>
-              </div>
-
-            <div className='absolute bottom-0  md:p-5 flex  items-center px-10 md:px-20 w-full justify-between p-3' >
-              
-              <div  className=''>
-                <p className='text-white text-sm  md:text-2xl font-bold'>$11.00</p>
-                <p className='text-white  text-sm md:text-md font-bold'>220gm/600 cal</p>
-
-              </div>
-
-                 <div>
-                    <ShoppingCart className='text-red-500 w-8 h-8 '/>
-                 </div>
-            </div>
-           </div>
-
-           <div className='w-full h-[500px] md:w-[350px] bg-white md:h-[600px]   flex flex-col justify-between md:p-4 pt-3 md:pt-6 pb-6 rounded-[40px] gap-1  hover:scale-102 transition-transform duration-1000  '>
+           {/* <div className='w-full h-[500px] md:w-[350px] bg-white md:h-[600px]   flex flex-col justify-between md:p-4 pt-3 md:pt-6 pb-6 rounded-[40px] gap-1  hover:scale-102 transition-transform duration-1000  '>
             <div className=''>
             <h4 className='text-sm md:text-md font-semibold px-5 '>PORK</h4>
             <h1 className='md:text-4xl text-2xl font-bold px-5 tracking-wide'>Bøfsandwich</h1>
@@ -206,9 +213,12 @@ function Hero() {
               <ShoppingCart className='text-red-500 w-11 h-11 '/>
                  
             </div>
-           </div>
+           </div> */}
 
 
+
+
+ 
 
 
 
@@ -258,19 +268,7 @@ function Hero() {
 
 
 
-{/* <div className="w-full overflow-hidden leading-none relative">
-//bottom
-  <svg
-    viewBox="0 0 500 150"
-    preserveAspectRatio="none"
-    className="block w-full h-[100px] rotate-180"
-  >
-    <path
-      d="M0.00,39.98 C150.00,150.00 349.92,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-      fill="#FFEDB8"
-    />
-  </svg>
-</div> */}
+
 
 
 
@@ -359,7 +357,7 @@ function Hero() {
 
 
 
-  <div className="w-full  pb-20 ">
+  <div className="w-full  pb-20 ">  
       <div className=" text-center bg-red-500 md:pb-[25rem] pb-[10rem] relative"> 
           <h1 className={` text-[4rem] md:text-[13rem] tracking-wide font-bold text-yellow-300 ${myFont.className} pb-25 md:pb-0`}>Reviews </h1>
           {/* <h1 className={` text-[4rem]  md:text-[13rem] tracking-wide font-bold text-yellow-300 ${myFont.className}`}> Burgers</h1> */}
